@@ -1,0 +1,35 @@
+service:
+  name: workshop-mwadon
+
+custom:
+  defaultStage: dev
+  defaultRegion: us-east-1
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: ${opt:stage, self:custom.defaultStage}
+  region: ${opt:region, file(./serverless.env.yml):${self:provider.stage}.REGION}
+  versionFunctions: false
+  memorySize: 128
+
+  environment:
+    STAGE:
+      ${self:provider.stage}
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+
+functions:
+  addFile:
+    handler: handlers/hello-world.helloWorld
+    events:
+      - http:
+          method: post
+          path: hello-world
+          cors: true
+
+resources:
+  - ${file(resources/gateway.yml)}
+

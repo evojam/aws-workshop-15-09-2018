@@ -1,0 +1,46 @@
+{
+  "name": "aws-workshop",
+  "version": "1.0.0",
+  "description": "AWS Workshop",
+  "main": "handler.js",
+  "dependencies": {
+    "aws-sdk": "^2.314.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "8.10.1",
+    "@types/aws-sdk": "^2.7.0",
+    "@types/jest": "^23.3.2",
+    "@types/node": "^8.0.57",
+    "jest": "^23.6.0",
+    "serverless-offline": "^3.25.11",
+    "serverless-plugin-typescript": "^1.1.5",
+    "ts-jest": "^23.1.4",
+    "typescript": "^2.9.2"
+  },
+  "scripts": {
+    "test": "jest",
+    "tdd": "jest --watch"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "!**/node_modules/**",
+      "!**/setupJest.ts"
+    ],
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "testEnvironment": "node",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
+  },
+  "author": "Evojam - Marcin Wadoń",
+  "license": "MIT"
+}
