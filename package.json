@@ -18,8 +18,8 @@
     "typescript": "^2.9.2"
   },
   "scripts": {
-    "test": "jest",
-    "tdd": "jest --watch"
+    "test": "jest --silent",
+    "tdd": "jest --watch --silent"
   },
   "jest": {
     "collectCoverageFrom": [

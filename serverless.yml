@@ -22,7 +22,7 @@ plugins:
   - serverless-offline
 
 functions:
-  addFile:
+  helloWorld:
     handler: handlers/hello-world.helloWorld
     events:
       - http:
