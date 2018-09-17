@@ -6,7 +6,8 @@ export type Response = {
   body?: string,
 }
 
-const ok = <T>(body?: T): Response => ({ statusCode: 200, body: JSON.stringify(body) })
+const ok = <T>(body?: T): Response => ({ statusCode: StatusCode.Ok, body: JSON.stringify(body) })
+const created = <T>(body?: T): Response => ({ statusCode: StatusCode.Created, body: JSON.stringify(body) })
 const noContent: Response = { statusCode: StatusCode.NoContent }
 const badRequest = <T>(body?: T): Response => ({ statusCode: StatusCode.BadRequest, body: JSON.stringify(body) })
 const notFound = <T>(body?: T): Response => ({ statusCode: StatusCode.NotFound, body: JSON.stringify(body) })
@@ -15,6 +16,7 @@ const internalServerError: Response = { statusCode: StatusCode.InternalServerErr
 
 export const response = {
   ok,
+  created,
   noContent,
   badRequest,
   notFound,

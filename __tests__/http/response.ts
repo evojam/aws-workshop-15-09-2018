@@ -17,6 +17,23 @@ describe('200 Ok', () => {
   })
 })
 
+describe('201 Created', () => {
+  it('returns status 201 Created', () => {
+    expect(response.created().statusCode).toBe(201)
+  })
+
+  it('returns stringified body', () => {
+    // Given
+    const body = { hello: 'world' }
+    const stringifiedBody = JSON.stringify(body)
+
+    // When
+    const result = response.created(body)
+
+    expect(result.body).toEqual(stringifiedBody)
+  })
+})
+
 describe('204 No Content', () => {
   it('returns status 204 No Content', () => {
     expect(response.noContent.statusCode).toBe(204)
