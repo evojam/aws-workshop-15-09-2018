@@ -1,0 +1,8 @@
+Resources:
+  PicturesBucket:
+    Type: AWS::S3::Bucket
+
+Outputs:
+  PicturesBucketName:
+    Value:
+      Ref: PicturesBucket

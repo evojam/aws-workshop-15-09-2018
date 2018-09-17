@@ -1,5 +1,5 @@
 service:
-  name: workshop-mwadon
+  name: aws-workshop-pictures
 
 custom:
   defaultStage: dev
@@ -16,6 +16,24 @@ provider:
   environment:
     STAGE:
       ${self:provider.stage}
+    PICTURES_BUCKET:
+      Ref: PicturesBucket
+
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+        - s3:PutObject
+      Resource:
+        Fn::Join:
+          - ""
+          - - "arn:aws:s3:::"
+            - Ref: PicturesBucketName
+            - "/*"
+    - Effect: Allow
+      Action:
+        - "rekognition:*"
+      Resource: "*"
 
 plugins:
   - serverless-plugin-typescript
@@ -30,6 +48,22 @@ functions:
           path: hello-world
           cors: true
 
+  addFile:
+    handler: handlers/add-file.addFile
+    events:
+      - http:
+          method: post
+          path: file
+          cors: true
+
+  analyze:
+    handler: handlers/analyze.analyze
+    events:
+      - http:
+          method: get
+          path: analyze
+          cors: true
+
 resources:
   - ${file(resources/gateway.yml)}
-
+  - ${file(resources/s3-bucket.yml)}
